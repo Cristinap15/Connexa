@@ -11,7 +11,7 @@ async function loadSidebar() {
         <div class="sidebar-header">
           <div class="logo">Connexa</div>
           <button id="toggle-btn" title="Toggle Menu">
-            <img id="toggle-icon" src="./icons-menu/arrows-left.png" alt="Toggle Menu Icon">
+            <img id="toggle-icon" src="./icons-menu/arrows.png" alt="Toggle Menu Icon">
           </button>
         </div>
         <nav>
@@ -62,13 +62,13 @@ async function loadSidebar() {
       if (isCollapsed) sidebar.classList.add("collapsed");
   
       // Setează iconița corectă la încărcare
-      toggleIcon.src = isCollapsed ? "./icons-menu/arrows-right.png" : "./icons-menu/arrows-left.png";
+      toggleIcon.src = isCollapsed ? "./icons-menu/arrows-right.png" : "./icons-menu/arrows.png";
   
       toggleBtn.addEventListener("click", () => {
         sidebar.classList.toggle("collapsed");
         const collapsed = sidebar.classList.contains("collapsed");
         localStorage.setItem("sidebar-collapsed", collapsed);
-        toggleIcon.src = collapsed ? "./icons-menu/arrows-right.png" : "./icons-menu/arrows-left.png";
+        toggleIcon.src = collapsed ? "./icons-menu/arrows-right.png" : "./icons-menu/arrows.png";
       });
   
     } catch (error) {

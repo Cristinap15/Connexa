@@ -1,0 +1,198 @@
+:root {
+    /*----------------------------------*/
+    /*  BASE COLORS (brand + neutrals)  */
+    /*----------------------------------*/
+    --clr-brand-main: #977DFF;        /* violet - accent principal / sidebar */
+    --clr-brand-dark: #210886;        /* violet închis - pentru titluri și accent text */
+    --clr-brand-light: #CCBFFF;       /* violet pal - umbre / highlight */
+    
+    --clr-bg-light: #FFF5FC;          /* fundal principal */
+    --clr-bg-container: #FFEEF9;      /* fundal pentru carduri / panouri */
+    --clr-bg-sidebar: #977DFF;        /* fundal sidebar */
+    
+    --clr-white: #FFFFFF;
+    --clr-black: #1E1E1E;
+    --clr-dark: #010255;              /* text foarte închis */
+    --clr-grey-700: #474646;          /* text secundar */
+    --clr-grey-600: #424366;          /* subtitluri, conținut secundar */
+    --clr-grey-300: #F2E6EE;          /* text/icon deschis pe sidebar */
+    
+    /*----------------------------------*/
+    /*  TEXT COLORS  */
+    /*----------------------------------*/
+    --txt-header: var(--clr-dark);          /* titlu principal (Dashboard) */
+    --txt-subtitle: var(--clr-grey-600);    /* subtitluri sau descrieri */
+    --txt-body: var(--clr-grey-700);        /* text general */
+    --txt-sidebar: var(--clr-grey-300);     /* text din sidebar */
+    --txt-accent: var(--clr-brand-dark);    /* text accentuat (ex: $12,450) */
+    --txt-button: var(--clr-white);         /* text pe butoane */
+  
+    /*----------------------------------*/
+    /*  BACKGROUNDS  */
+    /*----------------------------------*/
+    --bg-main: var(--clr-bg-light);          /* fundal general */
+    --bg-sidebar: var(--clr-bg-sidebar);     /* fundal lateral */
+    --bg-container: var(--clr-bg-container); /* carduri / secțiuni */
+    --bg-button: var(--clr-dark);            /* buton principal */
+    --bg-icon: var(--clr-bg-light);          /* icon container */
+    
+    /*----------------------------------*/
+    /*  BORDERS & SHADOWS  */
+    /*----------------------------------*/
+    --border-container: var(--clr-brand-main);
+    --shadow-icon: 0 0 7.17px var(--clr-brand-light);
+    
+    /*----------------------------------*/
+    /* FONT FAMILIES */
+    /*----------------------------------*/
+    --font-display: "Poppins", sans-serif; /* pentru titluri, numere, etichete accentuate */
+    --font-body: 'Roboto', sans-serif;
+    --font-logo:"Gluten", sans-serif;
+
+    /*----------------------------------*/
+    /* FONT WEIGHTS */
+    /*----------------------------------*/
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --font-weight-black: 900;
+
+    /*----------------------------------*/
+    /* HEADINGS (Poppins) */
+    /*----------------------------------*/
+    --font-dashboard-title: var(--font-display);
+    --font-weight-dashboard-title: var(--font-weight-black);
+
+    --font-section-title: var(--font-display);
+    --font-weight-section-title: var(--font-weight-bold);
+
+    --font-card-number: var(--font-display);
+    --font-weight-card-number: var(--font-weight-black);
+
+    --font-card-label: var(--font-display);
+    --font-weight-card-label: var(--font-weight-semibold);
+
+    /*----------------------------------*/
+    /* BODY TEXT (Roboto) */
+    /*----------------------------------*/
+    --font-body-main: var(--font-body);
+    --font-weight-body-main: var(--font-weight-regular);
+
+    --font-body-secondary: var(--font-body);
+    --font-weight-body-secondary: var(--font-weight-medium);
+
+    --font-caption: var(--font-body);
+    --font-weight-caption: var(--font-weight-regular);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.sidebar {
+    width: 337px;
+    min-height: 100vh;
+    background-color: var(--bg-sidebar);
+    padding: 44px 63px 46px 56px;
+    font-family: var(--font-body-main);
+    font-weight: var(--font-weight-black);
+    color: var(--txt-sidebar);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-family: var(--font-logo);
+    font-weight: var(--font-weight-bold);
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    cursor: pointer;
+}
+
+.content-container {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+    margin-left: -30px;
+    background: var(--bg-container);
+    border-radius: 30px 0 0 30px;
+  }
+
+#toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#toggle-btn img {
+    width: 25px;
+    height: 25px;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 230px;
+}
+
+.menu-top,
+.menu-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    list-style: none;
+}
+
+nav li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--txt-sidebar);
+    font-weight: var(--font-weight-black);
+    font-size: var(--fs-card-label);
+}
+
+nav li a img {
+    width: 25px;
+    height: 25px;
+    margin-right: 11px;
+}
+
+.sidebar.collapsed {
+    width: 160px;
+    min-height: 100vh;
+    padding: 44px 73px 43px 62px;
+}
+
+.sidebar.collapsed .logo,
+.sidebar.collapsed nav span {
+    display: none;
+}
+
+.sidebar.collapsed nav {
+    gap: 200px;
+}
+
+.sidebar.collapsed nav img {
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+}
