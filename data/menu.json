@@ -1,6 +1,6 @@
 {
     "top": [
-      { "icon": "./icons-menu/icons8-prototype-96.png", "label": "Dashboard", "link": "index.html" },
+      { "icon": "./icons-menu/icons8-prototype-96.png", "label": "Dashboard", "link": "dashboard.html" },
       { "icon": "./icons-menu/icons8-task-96.png", "label": "Projects", "link": "projects.html" },
       { "icon": "./icons-menu/icons8-us-dollar-circled-96.png", "label":"Finance", "link":"finance.html"},
       { "icon": "./icons-menu/icons8-group-96.png", "label": "Clients", "link": "clients.html" }
