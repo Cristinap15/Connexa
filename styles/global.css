@@ -196,3 +196,110 @@ nav li a img {
     width: 30px;
     height: 30px;
 }
+
+.content-container{
+    padding: 45px 81px 45px 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+#header-container{
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: sticky;
+}
+.dashboard-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 23px;
+    font-family: var(--font-body-main);
+}
+.header-tools{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.language-switch{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: var(--clr-dark);
+    font-weight: var(--font-weight-extrabold);
+    font-size: 0.9rem;
+}
+.language-separator{
+    width: 2px;
+    height: 25px;
+}
+.header-icon img{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.user-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+}
+.user-info img{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.user-details{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+}
+.user-name{
+    font-weight: var(--font-weight-semibold);
+    font-size: 1rem;
+    color: var(--clr-black);
+}
+.user-email{
+    font-weight: var(--font-weight-medium);
+    font-size: 0.75rem;
+    color: var(--clr-grey-700);
+}
+.dashboard-intro{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: flex-start;
+}
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.top .title{
+    font-family: var(--font-dashboard-title);
+    font-weight: var(--font-weight-dashboard-title);
+    font-size: 2rem;
+    color: var(--clr-dark);
+}
+#new-project-btn{
+    background-color: var(--bg-button);
+    color: var(--txt-button);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-family: var(--font-body-main);
+    font-weight: var(--font-weight-semibold);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.subtitle{
+    font-family: var(--font-body-main);
+    font-weight: var(--font-weight-bold);
+    font-size: 1rem;
+    color: var(--clr-grey-600);
+}
