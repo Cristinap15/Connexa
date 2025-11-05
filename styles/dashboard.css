@@ -1,0 +1,59 @@
+html {
+    font-size: 16px; /* Or 62.5% for easier calculations (10px) */
+  }
+.dashboard-stats{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.card{
+    width: 252px;
+    height: 149px;
+    background-color: var( --bg-container);
+    border-radius: 14px;
+    padding: 17px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    border: 1px solid var(--border-container);
+}
+.card #top-part{
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-extrabold);
+    font-size: 1.2rem;
+    color: #46437C;
+}
+.stats{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.stats h2{
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-extrabold);
+    font-size: 2.8rem;
+    color: var(--clr-dark);
+}
+.stats img{
+    width: 30px;
+    height: 30px;
+}
+.img-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 9px;
+    background-color: var(--bg-icon);
+    border: none;
+    box-shadow: var( --shadow-icon);
+}
+
+.accent{
+    color: var(--txt-accent);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: var(--font-weight-bold);
+}
