@@ -4,281 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects</title>
-  <link rel="stylesheet" href="./styles/global.css" />
-  <link rel="stylesheet" href="./styles/projects.css" />
+  <link rel="stylesheet" href="styles/global.css" />
+  <link rel="stylesheet" href="styles/projects.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&family=Poppins:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
-  <style>
-    :root {
-      --clr-bg-container: #ffeeF9;
-      --clr-bg-card: #f8e9f3;
-      --clr-accent: #6a38c2;
-      --clr-primary: #1a1a40;
-      --clr-secondary: #8d8daa;
-      --font-body: 'Roboto', sans-serif;
-
-      --clr-done: #43934e;
-      --clr-progress: #b7963b;
-      --clr-notstarted: #dee2e6;
-    }
-
-    body {
-      font-family: var(--font-body);
-      background: var(--clr-bg-container);
-      margin: 0;
-      padding: 0;
-      color: var(--clr-primary);
-    }
-
-    .dashboard-intro {
-      margin-bottom: 2rem;
-    }
-
-    .dashboard-intro .top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .dashboard-intro .title {
-      font-size: 2rem;
-      font-weight: 700;
-    }
-
-    .dashboard-intro .subtitle {
-      font-size: 1rem;
-      color: var(--clr-secondary);
-      margin-top: 0.3rem;
-    }
-
-    #new-project-btn {
-      background-color: var(--clr-primary);
-      color: #fff;
-      border: none;
-      padding: 0.8rem 1.2rem;
-      border-radius: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    #new-project-btn:hover {
-      background-color: var(--clr-accent);
-    }
-
-    .dashboard-content {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    /* Search bar */
-    .search-bar {
-      position: relative;
-      width: 100%;
-      margin-top: -25px;
-      display: flex;
-      align-items: center;
-      background: var(--clr-bg-card);
-      border: 1px solid var(--clr-accent);
-      border-radius: 10px;
-      padding: 0.6rem 1rem;
-    }
-
-    .search-bar img {
-      width: 20px;
-      height: 20px;
-      margin-right: 0.8rem;
-      opacity: 0.8;
-    }
-
-    .search-bar input {
-      border: none;
-      outline: none;
-      width: 100%;
-      font-size: 1rem;
-      background: transparent;
-      color: var(--clr-primary);
-    }
-
-    /* Project Card */
-    .project-card {
-      background: var(--clr-bg-card);
-      border: 1px solid var(--clr-accent);
-      border-radius: 12px;
-      padding: 1.5rem;
-      max-width: 500px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-      position: relative;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    /* Status area */
-    .status-area {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .status-btn {
-      color: rgb(58, 58, 58);
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 20px;
-      padding: 0.4rem 0.8rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .status-btn:hover {
-      background: #f1f1f1;
-    }
-
-    .menu-btn {
-      background: #fff;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      font-size: 1.3rem;
-      line-height: 30px;
-      text-align: center;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    /* Dropdown */
-    .status-dropdown {
-      position: absolute;
-      top: 2.6rem;
-      right: 0;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      display: none;
-      flex-direction: column;
-      overflow: hidden;
-      z-index: 10;
-    }
-
-    .status-option {
-      padding: 0.6rem 1rem;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: 0.2s;
-    }
-
-    .status-option:hover {
-      background: #f2f2f2;
-    }
-
-    .done { background: var(--clr-done); }
-    .in-progress { background: var(--clr-progress); }
-    .not-started { background: var(--clr-notstarted); }
-
-    .project-card h2 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-    }
-
-    .project-card p {
-      font-size: 0.95rem;
-      color: #4a4a6a;
-      margin-bottom: 1rem;
-    }
-
-    .project-info {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.5rem 2rem;
-      font-size: 0.9rem;
-      color: #4a4a6a;
-      margin-bottom: 1rem;
-    }
-
-    .info-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .info-icon {
-      width: 20px;
-      height: 20px;
-      object-fit: contain;
-    }
-
-    /* Progress section */
-    .progress-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.85rem;
-      color: #4a4a6a;
-      margin-bottom: 0.3rem;
-      font-weight: 600;
-    }
-
-    .progress-container {
-      position: relative;
-      margin-bottom: 1rem;
-    }
-
-    .progress-container .progress-bar {
-      height: 8px;
-      border-radius: 6px;
-      overflow: hidden;
-      background: #e0d2eb;
-    }
-
-    .progress-container .progress {
-      height: 100%;
-      background: #1a1a40;
-      border-radius: 6px;
-    }
-
-    /* Buttons */
-    .card-buttons {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .card-buttons button {
-      flex: 1;
-      padding: 0.8rem;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .btn-details {
-      background: #1a1a40;
-      color: white;
-    }
-
-    .btn-log {
-      background: #9b5de5;
-      color: white;
-    }
-
-    .btn-details:hover,
-    .btn-log:hover {
-      opacity: 0.85;
-    }
-
-  </style>
+  
 </head>
 <body>
   <div class="main-container">
@@ -294,91 +28,64 @@
         <p class="subtitle">Track and manage all your freelance projects.</p>
       </section>
 
-      <section class="dashboard-content">
-        <!-- Search Bar -->
+      <section class="dashboard-content" id="dashboard-content">
         <div class="search-bar">
           <img src="icons-menu/search-color.svg" alt="Search" />
           <input type="text" placeholder="Search projects..." />
-        </div>
-
-        <!-- Project Card -->
-        <div class="project-card">
-          <div class="status-area">
-            <button class="status-btn not-started" id="statusText">Not Started</button>
-            <button class="menu-btn" id="menuBtn">⋮</button>
-            <div class="status-dropdown" id="statusDropdown">
-              <div class="status-option not-started">Not Started</div>
-              <div class="status-option in-progress">In Progress</div>
-              <div class="status-option done">Done</div>
-            </div>
-          </div>
-
-          <h2>Project Name</h2>
-          <p>Project description that fits what we need to do</p>
-
-          <div class="project-info">
-            <div class="info-item">
-              <img src="./icons-menu/Organization-color.svg" alt="Company" class="info-icon" />
-              <span>Company name</span>
-            </div>
-            <div class="info-item">
-              <img src="./icons-menu/calendar-color.svg" alt="Date" class="info-icon" />
-              <span>Dec 20, 2024</span>
-            </div>
-            <div class="info-item">
-              <img src="./icons-menu/dolar-color.svg" alt="Budget" class="info-icon" />
-              <span>$5,500</span>
-            </div>
-            <div class="info-item">
-              <img src="./icons-menu/clock-color.svg" alt="Hours" class="info-icon" />
-              <span>34h</span>
-            </div>
-          </div>
-
-          <div class="progress-header">
-            <span>Progress</span>
-            <span>75%</span>
-          </div>
-
-          <div class="progress-container">
-            <div class="progress-bar">
-              <div class="progress" style="width:75%"></div>
-            </div>
-          </div>
-
-          <div class="card-buttons">
-            <button class="btn-details">View Details</button>
-            <button class="btn-log">Log Time</button>
-          </div>
         </div>
       </section>
     </div>
   </div>
 
-  <script src="scripts/sidebar.js"></script>
-  <script src="scripts/header.js"></script>
-  <script>
-    const menuBtn = document.getElementById("menuBtn");
-    const dropdown = document.getElementById("statusDropdown");
-    const statusText = document.getElementById("statusText");
+  <div id="projectFormPopup" class="popup-overlay">
+    <div class="popup-content">
+      <span class="close-btn" id="closePopup">&times;</span>
+      <h2>New Project</h2>
 
-    menuBtn.addEventListener("click", () => {
-      dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
-    });
+      <form id="newProjectForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Project Name *</label>
+            <input type="text" name="project_name" placeholder="Enter project name" required>
+          </div>
+          <div class="form-group">
+            <label>Client Name *</label>
+            <input type="text" name="client_name" placeholder="Enter client name" required>
+          </div>
+        </div>
+        <div class="form-group full-width">
+          <label>Description</label>
+          <textarea name="description" placeholder="Enter project description"></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Budget *</label>
+            <input type="number" name="budget" placeholder="$5,000" required>
+          </div>
+          <div class="form-group">
+            <label>Due Date *</label>
+            <input type="date" name="due_date" required>
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select name="status">
+              <option value="Not Started">Not Started</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Done">Done</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-buttons">
+          <button type="button" id="cancelBtn" class="btn-cancel">Cancel</button>
+          <button type="submit" class="btn-create">Create Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-    document.querySelectorAll(".status-option").forEach(option => {
-      option.addEventListener("click", () => {
-        statusText.textContent = option.textContent;
-        statusText.className = "status-btn " + option.classList[1];
-        dropdown.style.display = "none";
-      });
-    });
+<script src="scripts/sidebar.js"></script>
+<script src="scripts/header.js"></script>
+<script src="scripts/projects.js"></script>
 
-    window.addEventListener("click", (e) => {
-      if (!menuBtn.contains(e.target) && !dropdown.contains(e.target)) {
-        dropdown.style.display = "none";
-      }
-    });
-  </script>
 </body>
 </html>
