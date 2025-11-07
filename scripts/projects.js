@@ -19,7 +19,7 @@
     card.innerHTML = `
       <div class="status-area">
         <button class="status-btn ${data.status.toLowerCase().replace(' ', '-')}">${data.status}</button>
-        <button class="menu-btn">⋮</button>
+        <button class="menu-btn"><img src="./icons-menu/3Dots.png" alt="menu icon"></button>
         <div class="status-dropdown">
           <div class="status-option not-started">Not Started</div>
           <div class="status-option in-progress">In Progress</div>
