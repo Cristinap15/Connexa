@@ -128,6 +128,9 @@ html {
 }
 
 .content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
     flex: 1;
     position: relative;
     z-index: 2;

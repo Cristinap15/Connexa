@@ -65,14 +65,66 @@
                 </div>
             </section>
             <main class="dashboard-content">
-                <section class="recent-projects"></section>
+                <section class="recent-projects">
+                    <div class="top">
+                        <h2>Recent Projects</h2>
+                        <a href="projects.html">View All</a>
+                    </div>
+                    <div class="recentsProjects">
+                        <p class="no-data">No recent projects to display.</p>
+                        <div class="project">
+                            <img src="./icons-menu/3Dots.png" alt="">
+                            <div class="project-info">
+                                <div class="project-header">
+                                    <div>
+                                        <h3 class="project-title">Project Name</h3>
+                                        <span class="status in-progress">In Progress</span>
+                                    </div>
+                                    <p class="client-name">Client’s name</p>
+                                </div>
+                                <div class="projects-footer">
+                                    <div class="progress-container">
+                                        <div class="progress-bar"><div class="progress" style="width:0%"></div></div>
+                                        <span class="progress-value">0%</span>
+                                    </div>
+                                    <span class="due-date">Due: Dec 15, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 <aside class="dashboard-sidecontent">
-                    <section class="dashboard-calendar"></section>
+                    <section class="dashboard-calendar">
+                        <div class="calendar-header">
+                            <span id="month-year">June 2024</span>
+                            <div class="caledar-btns">
+                                <button id="prev-month">&lt;</button>
+                                <button id="next-month">&gt;</button>
+                            </div>
+                        </div>
+                        <table class="calendar-table">
+                            <thead>
+                                <tr>
+                                    <th>Sun</th>
+                                    <th>Mon</th>
+                                    <th>Tue</th>
+                                    <th>Wed</th>
+                                    <th>Thu</th>
+                                    <th>Fri</th>
+                                    <th>Sat</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calendar-body">
+                                <!-- Calendar dates will be dynamically generated here -->
+                            </tbody>
+                        </table>
+                    </section>
                     <section class="dashboard-messages"></section>
                 </aside>
             </main>
         </div>
     </div>
+    <script src="scripts/calendar.js"></script>
     <script src="scripts/sidebar.js"></script>
     <script src="scripts/header.js"></script>
 </body>

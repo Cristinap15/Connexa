@@ -57,3 +57,231 @@ html {
     font-size: 0.9rem;
     font-weight: var(--font-weight-bold);
 }
+.dashboard-content{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+.recent-projects,
+.dashboard-sidecontent {
+    flex: 1;
+    transition: all 0.3s ease;
+}
+.recent-projects{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 725px;
+    gap: 15px;
+    background-color: var(--bg-container);
+    border: 1px solid var(--border-container);
+    border-radius: 14px;
+    padding: 15px 17px;
+}
+.recent-projects .top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.recent-projects .top h2{
+    font-family: var(--font-section-title);
+    font-weight: var(--font-weight-section-title);
+    font-size: 30px;
+    color: var(--clr-dark);
+}
+.recent-projects .top a{
+    font-family: var(--font-caption);
+    font-weight: var(--font-weight-semibold);
+    font-size: 18px;
+    color: var(--txt-subtitle);
+    text-decoration: none;
+}
+.recentsProjects{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.no-data{
+    font-family: var(--font-body-main);
+    font-weight: var(--font-weight-medium);
+    font-size: 16px;
+    color: var(--txt-subtitle);
+}
+.recentsProjects .project{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.recentsProjects .project img {
+    width: 7px;
+    height: auto;
+    cursor: pointer;
+}
+.project-info{
+    display: flex;
+    flex-direction: column;
+    padding: 12px 18px;
+    border-radius: 14px;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-container);
+    gap: 14px;
+    width: 100%;
+}
+.project-header {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.project-header > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-title {
+    font-family: var(--font-body-main);
+    font-weight: var(--font-weight-bold);
+    color: var(--clr-brand-dark);
+    font-size: 20px;
+}
+.status {
+    background-color: #40223B;
+    font-family: var(--font-body-main);
+    color: #fff;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+.client-name {
+    font-family: var(--font-body-main);
+    font-weight: var(--font-weight-medium);
+    color: var(--txt-subtitle);
+    font-size: 15px;
+}
+.projects-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.progress-bar {
+    width: 200px;
+    height: 6px;
+    background-color: #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #21007f;
+    border-radius: 4px;
+}
+
+.progress-value {
+    font-size: 12px;
+    font-family: var(--font-body-main);
+    font-weight: var(--font-weight-bold);
+    color: var(--txt-subtitle);
+}
+.due-date {
+    font-size: 12px;
+    font-family: var(--font-body-main);
+    font-weight: var(--font-weight-medium);
+    color: var(--txt-subtitle);
+}
+.dashboard-sidecontent {
+    min-width: 327px;
+}
+
+.dashboard-calendar {
+    padding: 12px 18px;
+    border-radius: 14px;
+    background-color: var(--bg-container);
+    border: 1px solid var(--border-container);
+    font-family: var(--font-body-main);
+    width: 100%;
+    box-sizing: border-box;
+    
+}
+
+/* Header */
+.calendar-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.calendar-header #month-year {
+    font-family: var(--font-section-title);
+    font-weight: var(--font-weight-section-title);
+    font-size: 30px;
+    color: var(--clr-dark);
+}
+
+.caledar-btns {
+    display: flex;
+    gap: 10px;
+}
+
+.caledar-btns button {
+    background-color: #3b214a;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.caledar-btns button:hover {
+    background-color: #21007f;
+}
+
+/* Table */
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    color: var(--txt-title);
+    font-size: 0.95rem;
+}
+
+.calendar-table th {
+    padding: 8px 0;
+    color: #21007f;
+    font-weight: var(--font-weight-semibold);
+}
+
+.calendar-table td {
+    padding: 6px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.calendar-table td:hover {
+    background-color: #f1e6ff;
+}
+
+/* Current day */
+.calendar-table td.today {
+    background-color: #3b214a;
+    color: white;
+    font-weight: var(--font-weight-semibold);
+}
