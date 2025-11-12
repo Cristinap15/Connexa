@@ -1,0 +1,24 @@
+-- Create database (run once, or create manually in MySQL)
+-- CREATE DATABASE IF NOT EXISTS connexa_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- USE connexa_db;
+
+CREATE TABLE IF NOT EXISTS clients (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL UNIQUE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS projects (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  client_id INT UNSIGNED NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  description TEXT NULL,
+  budget DECIMAL(12,2) NOT NULL DEFAULT 0,
+  due_date DATE NOT NULL,
+  status ENUM('Not Started','In Progress','Done') NOT NULL DEFAULT 'Not Started',
+  hours_spent INT UNSIGNED NOT NULL DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_projects_client FOREIGN KEY (client_id)
+    REFERENCES clients(id) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+

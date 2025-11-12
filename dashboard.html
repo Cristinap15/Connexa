@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="./styles/global.css" />
+    <link rel="stylesheet" href="./styles/projects.css">
     <link rel="stylesheet" href="./styles/dashboard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +37,7 @@
                 <div class="card">
                     <p id="top-part">Active Projects</p>
                     <div class="stats">
-                        <h2>0</h2>
+                        <h2 id="active-projects-count">0</h2>
                         <div class="img-container">
                             <img src="./icons-menu/Task-color.png" alt="">
                         </div>
@@ -64,7 +65,7 @@
                     <p class="accent">This month</p>
                 </div>
             </section>
-            <main class="dashboard-content">
+            <main id="dashboard-content" class="dashboard-content">
                 <section class="recent-projects">
                     <div class="top">
                         <h2>Recent Projects</h2>
@@ -72,25 +73,6 @@
                     </div>
                     <div class="recentsProjects">
                         <p class="no-data">No recent projects to display.</p>
-                        <div class="project">
-                            <img src="./icons-menu/3Dots.png" alt="">
-                            <div class="project-info">
-                                <div class="project-header">
-                                    <div>
-                                        <h3 class="project-title">Project Name</h3>
-                                        <span class="status in-progress">In Progress</span>
-                                    </div>
-                                    <p class="client-name">Client’s name</p>
-                                </div>
-                                <div class="projects-footer">
-                                    <div class="progress-container">
-                                        <div class="progress-bar"><div class="progress" style="width:0%"></div></div>
-                                        <span class="progress-value">0%</span>
-                                    </div>
-                                    <span class="due-date">Due: Dec 15, 2025</span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </section>
                 <aside class="dashboard-sidecontent">
@@ -119,11 +101,61 @@
                             </tbody>
                         </table>
                     </section>
-                    <section class="dashboard-messages"></section>
                 </aside>
             </main>
         </div>
     </div>
+
+    <div id="projectFormPopup" class="popup-overlay" style="display:none">
+        <div class="popup-content">
+          <div class="header">
+            <h2>New Project</h2>
+            <span class="close-btn" id="closePopup"><img src="./icons-menu/Cancel.png" alt="close"></span>
+          </div>
+          <hr>
+          <form id="newProjectForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Project Name *</label>
+                <input type="text" name="project_name" placeholder="Enter project name" required>
+              </div>
+              <div class="form-group">
+                <label>Client Name *</label>
+                <input type="text" name="client_name" placeholder="Enter client name" required>
+              </div>
+            </div>
+            <div class="form-group full-width">
+              <label>Description</label>
+              <textarea name="description" placeholder="Enter project description"></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Budget *</label>
+                <input type="number" name="budget" placeholder="$5,000" required>
+              </div>
+              <div class="form-group">
+                <label>Due Date *</label>
+                <input type="date" name="due_date" required>
+              </div>
+              <div class="form-group">
+                <label>Status</label>
+                <select name="status">
+                  <option value="Not Started">Not Started</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Done">Done</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-buttons">
+              <button type="button" id="cancelBtn" class="btn-cancel">Cancel</button>
+              <button type="submit" class="btn-create">Create Project</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    
+    <script src="scripts/dashboard.js"></script>
     <script src="scripts/calendar.js"></script>
     <script src="scripts/sidebar.js"></script>
     <script src="scripts/header.js"></script>

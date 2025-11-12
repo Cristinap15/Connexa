@@ -1,24 +1,45 @@
+const API = {
+  list: 'data/projects_list.php',
+  create: 'data/projects_create.php',
+  update: 'data/projects_update.php',
+  del: 'data/projects_delete.php'
+};
 
   const newProjectBtn = document.getElementById("new-project-btn");
   const popup = document.getElementById("projectFormPopup");
   const closePopup = document.getElementById("closePopup");
   const cancelBtn = document.getElementById("cancelBtn");
   const form = document.getElementById("newProjectForm");
-  const dashboard = document.getElementById("dashboard-content");
+  // On projects.html, cards live inside the main grid with id `dashboard-content`
+  const grid = document.getElementById("dashboard-content");
 
-  newProjectBtn.onclick = () => popup.style.display = "flex";
-  closePopup.onclick = cancelBtn.onclick = () => popup.style.display = "none";
+  if (newProjectBtn && popup) newProjectBtn.onclick = () => popup.style.display = "flex";
+  if (closePopup && popup) closePopup.onclick = () => popup.style.display = "none";
+  if (cancelBtn && popup) cancelBtn.onclick = () => popup.style.display = "none";
   window.onclick = (e) => { if (e.target === popup) popup.style.display = "none"; };
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(form).entries());
+  function statusClass(status){
+    const s = String(status);
+    return s === 'Done' ? 'done' : (s === 'In Progress' ? 'in-progress' : 'not-started');
+  }
+
+  function progressFor(status){
+    const s = String(status);
+    if (s === 'Done') return 100;
+    if (s === 'In Progress') return 50;
+    return 0;
+  }
+
+  function buildCard(data){
+    const name = data.project_name || data.name || '';
+    const status = data.status || 'Not Started';
+    const pct = progressFor(status);
 
     const card = document.createElement("div");
     card.className = "project-card";
     card.innerHTML = `
       <div class="status-area">
-        <button class="status-btn ${data.status.toLowerCase().replace(' ', '-')}">${data.status}</button>
+        <button class="status-btn ${statusClass(status)}">${status}</button>
         <button class="menu-btn"><img src="./icons-menu/3Dots.png" alt="menu icon"></button>
         <div class="status-dropdown">
           <div class="status-option not-started">Not Started</div>
@@ -29,19 +50,19 @@
           <div class="menu-option delete">Delete</div>
         </div>
       </div>
-      <h2>${data.project_name}</h2>
+      <h2>${name}</h2>
       <p>${data.description || "No description provided."}</p>
-      <div class="project-info">
-        <div class="info-item"><img src="./icons-menu/Organization-color.svg" class="info-icon" /> ${data.client_name}</div>
-        <div class="info-item"><img src="./icons-menu/calendar-color.svg" class="info-icon" /> ${data.due_date}</div>
-        <div class="info-item"><img src="./icons-menu/dolar-color.svg" class="info-icon" /> $${data.budget}</div>
+      <div class="project-infoProjects">
+        <div class="info-item"><img src="./icons-menu/Organization-color.svg" class="info-icon" /> ${data.client_name || ''}</div>
+        <div class="info-item"><img src="./icons-menu/calendar-color.svg" class="info-icon" /> ${data.due_date || ''}</div>
+        <div class="info-item"><img src="./icons-menu/dolar-color.svg" class="info-icon" /> $${data.budget || 0}</div>
         <div class="info-item"><img src="./icons-menu/clock-color.svg" class="info-icon" /> 0h</div>
       </div>
       <div class="progress-header">
-        <span>Progress</span><span class="progress-value">0%</span>
+        <span>Progress</span><span class="progress-value">${pct}%</span>
       </div>
-      <div class="progress-container">
-        <div class="progress-bar"><div class="progress" style="width:0%"></div></div>
+      <div class="progress-containerProjects">
+        <div class="progress-bar"><div class="progress" style="width:${pct}%"></div></div>
       </div>
       <div class="card-buttons">
         <button class="btn-details">View Details</button>
@@ -84,13 +105,61 @@
       });
     });
 
-    card.querySelector(".menu-option.delete").addEventListener("click", () => {
+    card.querySelector(".menu-option.delete").addEventListener("click", async () => {
       card.style.transition = "opacity 0.3s ease";
       card.style.opacity = "0";
       setTimeout(() => card.remove(), 300);
+      // Optionally call backend delete if id exists
+      if (data.id) {
+        try {
+          await fetch(API.del, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: data.id }) });
+        } catch (_) { /* ignore UI-only delete errors */ }
+      }
     });
 
-    dashboard.appendChild(card);
-    form.reset();
-    popup.style.display = "none";
-  });
+    return card;
+  }
+
+  async function loadProjects(){
+    if (!grid) return;
+    try {
+      const res = await fetch(API.list);
+      const payload = await res.json();
+      const items = Array.isArray(payload.projects) ? payload.projects : [];
+      // Clear everything except the search bar (first child)
+      const nodes = Array.from(grid.children).slice(1);
+      nodes.forEach(n => n.remove());
+      items.forEach(p => grid.appendChild(buildCard(p)));
+    } catch (e) {
+      console.error('Failed to load projects', e);
+    }
+  }
+
+
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const payload = Object.fromEntries(new FormData(form).entries());
+      try {
+        const res = await fetch(API.create, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const dataText = await res.text();
+        const data = dataText ? JSON.parse(dataText) : {};
+        if (!res.ok || data.error) throw new Error(data.error || dataText || `HTTP ${res.status}`);
+        const project = data.project || payload;
+        if (grid) grid.appendChild(buildCard(project));
+        form.reset();
+        if (popup) popup.style.display = "none";
+      } catch (err) {
+        console.error('Failed to create project', err);
+        alert('Failed to create project. ' + (err && err.message ? err.message : ''));
+      }
+    });
+  }
+
+  // Load existing projects on page load
+  document.addEventListener('DOMContentLoaded', loadProjects);

@@ -8,9 +8,9 @@ async function loadHeader() {
         header.innerHTML=`
             <div class="header-tools">
                 <div class="language-switch">
-                    <span class="language-option active">ROM</span>
+                    <span class="language-option active">RO</span>
                     <span class="language-separator">|</span>
-                    <span class="language-option">RUS</span>
+                    <span class="language-option">RU</span>
                 </div>
                 <div class="header-icon">
                     <img src="./icons-menu/bell-icon.png" alt="Notifications">

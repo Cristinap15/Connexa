@@ -1,21 +1,20 @@
 <?php
 $host = 'localhost';
-$db   = 'connexa_db';
-$user = 'your_db_user';
-$pass = 'your_db_password';
+$db   = 'connexa_bd';
+$user = 'root';
+$pass = '';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 
-$options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-];
-try {
-     $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (\PDOException $e) {
-     throw new \PDOException($e->getMessage(), (int)$e->getCode());
+// Establish mysqli connection
+$mysqli = @new mysqli($host, $user, $pass, $db);
+if ($mysqli->connect_errno) {
+    http_response_code(500);
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'DB connection failed', 'details' => $mysqli->connect_error]);
+    exit;
 }
+$mysqli->set_charset($charset);
 ?>
 

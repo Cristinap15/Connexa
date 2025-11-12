@@ -112,7 +112,11 @@ html {
     color: var(--txt-sidebar);
     display: flex;
     flex-direction: column;
-    position: relative;
+    /* Make sidebar sticky */
+    position: sticky;
+    top: 0;
+    align-self: flex-start; /* prevent flex stretching interfering with sticky */
+    height: 100vh;
     z-index: 1;
 }
 
@@ -133,7 +137,7 @@ html {
     gap: 26px;
     flex: 1;
     position: relative;
-    z-index: 2;
+    z-index: 1;
     margin-left: -30px;
     background: var(--bg-main);
     border-radius: 30px 0 0 30px;
@@ -186,6 +190,7 @@ nav li a img {
     width: 160px;
     min-height: 100vh;
     padding: 44px 73px 43px 62px;
+    height: 100vh;         /* keep sticky height when collapsed */
 }
 
 .sidebar.collapsed .logo,
