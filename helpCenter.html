@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help Center</title>
+  <link rel="stylesheet" href="styles/global.css" />
+  <link rel="stylesheet" href="styles/helpCenter.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="main-container">
+    <div id="sidebar-container"></div>
+    <div class="content-container">
+      <div id="header-container"></div>
+
+      <section class="dashboard-intro">
+        <div class="top">
+          <h1 class="title">Help Center</h1>
+          <p class="subtitle">Find answers, resources, and contact support</p>
+        </div>
+      </section>
+
+      <div class="search-bar help-search">
+        <img src="icons-menu/search-color.svg" alt="Search" />
+        <input type="text" placeholder="Search for help topics..." />
+      </div>
+
+      <main class="dashboard-content help-content">
+        <section class="help-section">
+          <h2>Getting Started</h2>
+          <p>New to Connexa? Learn the basics of setting up your account and projects.</p>
+          <div class="faq-list">
+            <details>
+              <summary>How do I create my first project?</summary>
+              <p>Go to the <strong>Projects</strong> page, click on the <em>+ New Project</em> button, and fill in your project details such as name, client, budget, and deadline. Once done, press <strong>Create Project</strong>.</p>
+            </details>
+            <details>
+              <summary>How do I invite a client?</summary>
+              <p>From your project dashboard, navigate to the <strong>Clients</strong> tab and click <em>Add Client</em>. You can then enter their email address or import from your contacts.</p>
+            </details>
+          </div>
+        </section>
+
+        <section class="help-section">
+          <h2>Account & Settings</h2>
+          <p>Manage your personal information, security preferences, and notifications.</p>
+          <div class="faq-list">
+            <details>
+              <summary>How can I change my password?</summary>
+              <p>Go to <strong>Settings → Privacy & Data</strong> and click on <em>Change Password</em>. You’ll receive a confirmation email with instructions.</p>
+            </details>
+            <details>
+              <summary>Can I turn off notifications?</summary>
+              <p>Yes! In <strong>Settings → Notifications</strong>, toggle off the types of alerts you no longer wish to receive.</p>
+            </details>
+          </div>
+        </section>
+
+        <section class="help-section">
+          <h2>Projects & Collaboration</h2>
+          <p>Learn how to work efficiently with teams and clients.</p>
+          <div class="faq-list">
+            <details>
+              <summary>Can multiple users edit a project?</summary>
+              <p>Yes, project collaborators can view and edit project details if given permission. You can manage access in the project’s <strong>Team</strong> tab.</p>
+            </details>
+            <details>
+              <summary>How do I share files securely?</summary>
+              <p>Each project includes a <strong>Files</strong> section where you can upload, view, and share documents with version tracking and access control.</p>
+            </details>
+          </div>
+        </section>
+
+        <section class="help-section">
+          <h2>Contact Support</h2>
+          <p>Can’t find what you’re looking for? We’re here to help!</p>
+          <div class="contact-options">
+            <div class="contact-card">
+              <img src="icons-menu/email.svg" alt="Email Support">
+              <h3>Email Support</h3>
+              <p>Send us your question and we’ll get back to you soon.</p>
+              <button class="btn-secondary">Email Us</button>
+            </div>
+            <div class="contact-card">
+              <img src="icons-menu/chat.svg" alt="Live Chat">
+              <h3>Live Chat</h3>
+              <p>Chat directly with one of our support agents in real time.</p>
+              <button class="btn-secondary">Start Chat</button>
+            </div>
+            <div class="contact-card">
+              <img src="icons-menu/docs.svg" alt="Documentation">
+              <h3>Documentation</h3>
+              <p>Browse our official user guides and developer docs.</p>
+              <button class="btn-secondary">View Docs</button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="help-footer">
+        <p>Still need assistance? <a href="mailto:support@flowzy.com">Contact our team</a>.</p>
+      </footer>
+    </div>
+  </div>
+
+  <script src="scripts/sidebar.js"></script>
+  <script src="scripts/header.js"></script>
+  <script src="scripts/help-center.js"></script>
+</body>
+</html>
