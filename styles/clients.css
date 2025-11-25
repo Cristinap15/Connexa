@@ -1,0 +1,157 @@
+  #new-project-btn:hover {
+    background-color: var(--clr-brand-main);
+  }
+  
+  .dashboard-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 50px;
+  }
+
+  .search-bar {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    background: var(--bg-container);
+    border: 1px solid var( --border-container);
+    border-radius: 10px;
+    padding: 0.6rem 1rem;
+  }
+  
+  .search-bar img {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.8rem;
+    opacity: 0.8;
+  }
+  
+  .search-bar input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 1rem;
+    background: transparent;
+    color: #000;
+  }
+  .search-bar input::placeholder {
+    color: #431E3E;
+  }
+
+  .client-card{
+    width: 340px;
+    background: var(--bg-container);
+    border: 1px solid var(--border-container);
+    border-radius: 12px;
+    padding: 18px;
+    position: relative;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .client-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: var(--clr-black);
+    font-family: var(--font-body-secondary);
+  }
+  .client-name{
+    font-size: 21px;
+  }
+  .status-area{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  .status-btn{
+    padding: 5px 20px;
+    background-color: var(--clr-white);
+    color: #000;
+    border: none;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight:700;
+    font-family: var(--font-body);
+  }
+  .menu-btn{
+    background: transparent;
+    border: none;
+    width: 25px;
+    cursor: pointer;
+  }
+  .client-content{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: var(--clr-grey-700);
+    font-size: 12px;
+    font-family: var(--font-body-secondary);
+  }
+  .client-contact-info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .info-item{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    font-weight: 600;
+  }
+  .info-item img{
+    width: 15px;
+    height: 15px;
+  }
+
+  hr{
+    border: none;
+    border-top: 1.5px solid var(--clr-grey-600);
+    margin: 0;
+  }
+  .client-project-stats{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-weight: 600;
+    margin-bottom: 25px;
+  }
+  .stats-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .projects_number{
+    font-weight: 800;
+    color: var(--clr-black);
+  }
+  .value{
+    font-weight: 800;
+    color: var(--txt-accent);
+  }
+
+
+  .card-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+  }
+  .card-buttons button{
+    width: 146px;
+    height: 34px;
+    border-radius: 10px;
+    font-family: var(--font-body-secondary);
+    font-weight: var( --font-weight-black);
+    color: var(--clr-white);
+    font-size: 12px;
+  }
+  .btn-contact{
+    background-color: var(--clr-brand-main);
+    border: none;
+  }
+  .btn-view-projects{
+    background-color: var(--bg-button);
+    border: none;
+  }
