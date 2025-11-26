@@ -41,8 +41,33 @@ $mysqli->set_charset('utf8mb4');
 $mysqli->query("CREATE TABLE IF NOT EXISTS clients (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255) NOT NULL UNIQUE,
+  company VARCHAR(255) NULL,
+  email VARCHAR(255) NULL,
+  phone VARCHAR(50) NULL,
+  status ENUM('Active','Inactive') NOT NULL DEFAULT 'Active',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+// Backfill columns if the table already existed
+// Add columns if missing (older MySQL may not support IF NOT EXISTS)
+$clientAlterStatements = [
+    "ALTER TABLE clients ADD COLUMN company VARCHAR(255) NULL",
+    "ALTER TABLE clients ADD COLUMN email VARCHAR(255) NULL",
+    "ALTER TABLE clients ADD COLUMN phone VARCHAR(50) NULL",
+    "ALTER TABLE clients ADD COLUMN status ENUM('Active','Inactive') NOT NULL DEFAULT 'Active'"
+];
+foreach ($clientAlterStatements as $sql) {
+    $mysqli->query($sql);
+    // Ignore duplicate column errors (1060) so deploy is idempotent
+    if ($mysqli->errno && $mysqli->errno !== 1060) {
+        // Surface unexpected errors to help debugging
+        echo json_encode([
+            'error' => 'Schema migration failed',
+            'details' => $mysqli->error,
+        ]);
+        exit;
+    }
+}
 
 $mysqli->query("CREATE TABLE IF NOT EXISTS projects (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -56,6 +81,18 @@ $mysqli->query("CREATE TABLE IF NOT EXISTS projects (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT fk_projects_client FOREIGN KEY (client_id)
     REFERENCES clients(id) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+// Users table for auth
+$mysqli->query("CREATE TABLE IF NOT EXISTS users (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  role ENUM('admin','user') NOT NULL DEFAULT 'user',
+  avatar VARCHAR(255) NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
 
 // Helper: fetch or create a client by name

@@ -10,8 +10,13 @@ const API = {
   const closePopup = document.getElementById("closePopup");
   const cancelBtn = document.getElementById("cancelBtn");
   const form = document.getElementById("newProjectForm");
+  const searchInput = document.querySelector(".search-bar input");
   // On projects.html, cards live inside the main grid with id `dashboard-content`
   const grid = document.getElementById("dashboard-content");
+  const urlParams = new URLSearchParams(window.location.search);
+  const clientFilter = urlParams.get('client') || '';
+
+  let allProjects = [];
 
   if (newProjectBtn && popup) newProjectBtn.onclick = () => popup.style.display = "flex";
   if (closePopup && popup) closePopup.onclick = () => popup.style.display = "none";
@@ -34,6 +39,7 @@ const API = {
     const name = data.project_name || data.name || '';
     const status = data.status || 'Not Started';
     const pct = progressFor(status);
+    const id = data.id;
 
     const card = document.createElement("div");
     card.className = "project-card";
@@ -117,7 +123,38 @@ const API = {
       }
     });
 
+    const viewBtn = card.querySelector(".btn-details");
+    if (viewBtn) {
+      viewBtn.addEventListener("click", () => {
+        if (id) {
+          const url = new URL('project-detail.html', window.location.href);
+          url.searchParams.set('id', id);
+          window.location.href = url.toString();
+        } else {
+          window.location.href = 'project-detail.html';
+        }
+      });
+    }
+
     return card;
+  }
+
+  function filterProjects(items) {
+    let filtered = items;
+    // Filter by client from URL
+    if (clientFilter) {
+      const q = clientFilter.toLowerCase();
+      filtered = filtered.filter(p => (p.client_name || '').toLowerCase().includes(q));
+    }
+    // Filter by search input
+    const term = (searchInput && searchInput.value ? searchInput.value : '').trim().toLowerCase();
+    if (term) {
+      filtered = filtered.filter(p =>
+        [p.name, p.project_name, p.client_name, p.description]
+          .some(val => val && String(val).toLowerCase().includes(term))
+      );
+    }
+    return filtered;
   }
 
   async function loadProjects(){
@@ -125,14 +162,30 @@ const API = {
     try {
       const res = await fetch(API.list);
       const payload = await res.json();
-      const items = Array.isArray(payload.projects) ? payload.projects : [];
+      let items = Array.isArray(payload.projects) ? payload.projects : [];
+      allProjects = items;
+      items = filterProjects(items);
       // Clear everything except the search bar (first child)
       const nodes = Array.from(grid.children).slice(1);
       nodes.forEach(n => n.remove());
       items.forEach(p => grid.appendChild(buildCard(p)));
+      if (clientFilter && searchInput) {
+        searchInput.value = clientFilter;
+      }
     } catch (e) {
       console.error('Failed to load projects', e);
     }
+  }
+
+  // Apply search on input
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      if (!grid) return;
+      const nodes = Array.from(grid.children).slice(1);
+      nodes.forEach(n => n.remove());
+      const items = filterProjects(allProjects);
+      items.forEach(p => grid.appendChild(buildCard(p)));
+    });
   }
 
 

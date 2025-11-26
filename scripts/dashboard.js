@@ -8,7 +8,11 @@
   
     function qs(sel) { return document.querySelector(sel); }
   
-    const countEl = qs('#active-projects-count');
+    const activeProjectsEl = qs('#active-projects-count');
+    const totalClientsEl = qs('#total-clients-count');
+    const newClientsEl = qs('#new-clients-this-month');
+    const hoursTrackedEl = qs('#hours-tracked');
+    const dueThisWeekEl = qs('#due-this-week-count');
     const recentList = qs('.recentsProjects');
     const newProjectBtn = qs('#new-project-btn');
     const popup = qs('#projectFormPopup');
@@ -18,15 +22,40 @@
   
     function showPopup() { if (popup) popup.style.display = 'flex'; }
     function hidePopup() { if (popup) popup.style.display = 'none'; }
+    function isDueThisWeek(dateStr) {
+      if (!dateStr) return false;
+      const d = new Date(dateStr);
+      if (Number.isNaN(d.getTime())) return false;
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const end = new Date(today);
+      end.setDate(end.getDate() + 7);
+      return d >= today && d <= end;
+    }
   
+    function isThisMonth(dateStr) {
+      if (!dateStr) return false;
+      const d = new Date(dateStr);
+      if (Number.isNaN(d.getTime())) return false;
+      const now = new Date();
+      return d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth();
+    }
+
     async function refreshActiveCount() {
-      if (!countEl) return;
+      if (!activeProjectsEl && !dueThisWeekEl && !hoursTrackedEl) return;
       try {
         const res = await fetch(API.list);
         const data = await res.json();
         const projects = Array.isArray(data.projects) ? data.projects : [];
         const active = projects.filter(p => String(p.status) !== 'Done').length;
-        countEl.textContent = String(active);
+        if (activeProjectsEl) activeProjectsEl.textContent = String(active);
+        const dueThisWeek = projects.filter(p => isDueThisWeek(p.due_date)).length;
+        if (dueThisWeekEl) dueThisWeekEl.textContent = String(dueThisWeek);
+        if (hoursTrackedEl) {
+          // Count projects and use 16h each by default
+          const totalHours = projects.length * 16;
+          hoursTrackedEl.textContent = `${totalHours}h`;
+        }
       } catch (e) {
         console.error('Failed to load active projects count', e);
       }
@@ -52,7 +81,6 @@
       const statusCls = statusClass(String(p.status));
       return `
        <div class="project">
-        <img src="./icons-menu/3Dots.png" alt="">
         <div class="project-info">
           <div class="project-header">
             <div>
@@ -90,6 +118,22 @@
           console.error('Failed to load recent projects', e);
         }
     }
+
+    async function refreshClientStats() {
+      if (!totalClientsEl && !newClientsEl) return;
+      try {
+        const res = await fetch('data/clients_list.php');
+        const data = await res.json();
+        const items = Array.isArray(data.clients) ? data.clients : [];
+        if (totalClientsEl) totalClientsEl.textContent = String(items.length);
+        if (newClientsEl) {
+          const addedThisMonth = items.filter(c => isThisMonth(c.created_at)).length;
+          newClientsEl.textContent = String(addedThisMonth);
+        }
+      } catch (e) {
+        console.error('Failed to load client stats', e);
+      }
+    }
   
     async function createProject(payload) {
       const res = await fetch(API.create, {
@@ -110,6 +154,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       refreshActiveCount();
       loadRecent();
+      refreshClientStats();
   
       newProjectBtn && (newProjectBtn.onclick = showPopup);
       closePopup && (closePopup.onclick = hidePopup);

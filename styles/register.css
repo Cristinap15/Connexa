@@ -107,6 +107,30 @@
       gap: 15px;
       margin-bottom: 25px;
     }
+    .form-footer{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      color: var(--clr-black);
+      gap: 10px;
+    }
+    .form-footer .remember{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .form-footer input[type="checkbox"]{
+      width: 16px;
+      height: 16px;
+      accent-color: var(--clr-brand-main);
+    }
+    .form-footer .forgot{
+      color: var(--clr-brand-dark);
+      text-decoration: underline;
+      font-weight: var(--font-weight-semibold);
+    }
 
     label {
       text-align: left;

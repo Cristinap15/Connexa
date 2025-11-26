@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Details</title>
+  <link rel="stylesheet" href="styles/global.css" />
+  <link rel="stylesheet" href="styles/project-detail.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="main-container">
+    <div id="sidebar-container"></div>
+    <div class="content-container detail-container">
+      <div id="header-container"></div>
+
+      <div class="detail-header">
+        <a class="back-link" href="projects.html">&larr; Back to Projects</a>
+      </div>
+
+      <main class="detail-grid">
+        <section class="project-summary">
+          <div class="summary-top">
+            <div>
+              <h1 id="project-title">Project Name</h1>
+              <p id="project-description">Project description</p>
+            </div>
+            <span class="status-pill" id="project-status">Status</span>
+          </div>
+          <div class="summary-meta">
+            <div class="meta-item">
+              <img src="./icons-menu/Organization-color.svg" alt="">
+              <div>
+                <p class="meta-label">Client</p>
+                <p class="meta-value" id="project-client">-</p>
+              </div>
+            </div>
+            <div class="meta-item">
+              <img src="./icons-menu/calendar-color.svg" alt="">
+              <div>
+                <p class="meta-label">Due Date</p>
+                <p class="meta-value" id="project-due">-</p>
+              </div>
+            </div>
+            <div class="meta-item">
+              <img src="./icons-menu/dolar-color.svg" alt="">
+              <div>
+                <p class="meta-label">Budget</p>
+                <p class="meta-value" id="project-budget">$0</p>
+              </div>
+            </div>
+          </div>
+          <div class="progress-block">
+            <div class="progress-header">
+              <span>Progress</span>
+              <span id="project-progress-value">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" id="project-progress" style="width:0%"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="tasks-card">
+          <h3>Tasks</h3>
+          <div class="task-list" id="task-list"></div>
+        </section>
+
+        <aside class="right-column">
+          <div class="quick-actions">
+            <h3>Quick Actions</h3>
+            <button class="qa-btn primary">Start Timer</button>
+            <button class="qa-btn">Add Note</button>
+            <button class="qa-btn">Edit Project</button>
+          </div>
+          <div class="recent-entries">
+            <h3>Recent Time Entries</h3>
+            <div class="entry-list" id="entry-list"></div>
+          </div>
+        </aside>
+      </main>
+    </div>
+  </div>
+
+  <script src="scripts/sidebar.js"></script>
+  <script src="scripts/header.js"></script>
+  <script src="scripts/project-detail.js"></script>
+</body>
+</html>

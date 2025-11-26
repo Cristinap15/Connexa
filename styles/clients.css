@@ -185,7 +185,7 @@
     color: var(--txt-subtitle);
   }
 
-  /* Popup (reuse projects dialog styling so the button works visibly) */
+  /* Popup overlay + container */
   .popup-overlay {
     position: fixed;
     inset: 0;
@@ -205,28 +205,21 @@
     border: 1px solid var(--border-container);
     border-radius: 14px;
     padding: 2rem;
-    width: 744px;
-    position: relative;
+    width: 744px; /* good for two-column layout */
     animation: popupFade 0.3s ease;
   }
 
+  /* Fade animation */
   @keyframes popupFade {
     from { transform: scale(0.9); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
   }
 
-  .header{
+  /* Header */
+  .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  hr{
-    background-color: var(--clr-grey-600);
-    height: 2.5px;
-    width: calc(100% + 4rem);
-    margin-left: -2rem;
-    border: none;
   }
 
   .close-btn {
@@ -235,6 +228,16 @@
     cursor: pointer;
   }
 
+  /* Divider line */
+  hr {
+    background-color: var(--clr-grey-600);
+    height: 2.5px;
+    width: calc(100% + 4rem);
+    margin-left: -2rem;
+    border: none;
+  }
+
+  /* Form layout */
   .popup-content form {
     display: flex;
     flex-direction: column;
@@ -258,12 +261,14 @@
     width: 100%;
   }
 
+  /* Labels */
   .form-group label {
     font-weight: var(--font-weight-semibold);
     color: var(--clr-black);
     font-size: 15px;
   }
 
+  /* Inputs / Textarea / Select */
   .form-group input,
   .form-group textarea,
   .form-group select {
@@ -277,6 +282,7 @@
     box-sizing: border-box;
   }
 
+  /* Placeholders */
   .form-group input::placeholder,
   .form-group textarea::placeholder,
   .form-group select::placeholder {
@@ -286,6 +292,7 @@
     font-weight: var(--font-weight-medium);
   }
 
+  /* Textarea fix */
   .form-group textarea {
     resize: none;
     min-height: 130px;
@@ -293,6 +300,13 @@
     height: auto;
   }
 
+  /* Select fix */
+  .form-group select {
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  /* Buttons */
   .form-buttons {
     display: flex;
     justify-content: space-between;
@@ -300,7 +314,8 @@
     margin-top: 10px;
   }
 
-  .btn-cancel, .btn-create {
+  .btn-cancel,
+  .btn-create {
     padding: 10px 30px;
     width: 329px;
     border-radius: 7px;
@@ -310,18 +325,23 @@
     transition: 0.3s;
   }
 
+  /* Cancel */
   .btn-cancel {
     background: var(--bg-main);
     color: var(--clr-grey-600);
     border: 1px solid var(--border-container);
   }
+  .btn-cancel:hover {
+    background: var(--clr-brand-main);
+    color: white;
+  }
 
-  .btn-cancel:hover { background: var(--clr-brand-main); }
-
+  /* Primary button */
   .btn-create {
     background: var(--clr-brand-main);
     border: none;
     color: white;
   }
-
-  .btn-create:hover { opacity: 0.9; }
+  .btn-create:hover {
+    opacity: 0.9;
+  }

@@ -34,7 +34,7 @@
 
     <div class="separator">or</div>
 
-    <form action="#" method="POST">
+    <form id="registerForm">
       <label>Full name</label>
       <input type="text" name="fullname" placeholder="John Doe" required>
 
@@ -48,7 +48,34 @@
       <button type="submit" class="btn-submit">Sign Up</button>
     </form>
 
-    <p class="login-text">Already have an account? <a href="login.php">Log In</a></p>
+    <p class="login-text">Already have an account? <a href="login.html">Log In</a></p>
   </div>
+
+  <script>
+    const regForm = document.getElementById('registerForm');
+    if (regForm) {
+      regForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const payload = Object.fromEntries(new FormData(regForm).entries());
+        try {
+          const res = await fetch('data/auth_register.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const text = await res.text();
+          let json = null;
+          try { json = text ? JSON.parse(text) : null; } catch (_) {}
+          if (!res.ok || (json && json.error)) {
+            const msg = json ? (json.error || json.details) : text || `HTTP ${res.status}`;
+            throw new Error(msg);
+          }
+          window.location.href = 'dashboard.html';
+        } catch (err) {
+          alert('Failed to sign up. ' + (err && err.message ? err.message : ''));
+        }
+      });
+    }
+  </script>
 </body>
 </html>

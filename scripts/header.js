@@ -1,7 +1,17 @@
 async function loadHeader() {
     try{
-        const response = await fetch("./data/getUser.php");
-        const user = await response.json();
+        let user = null;
+        try {
+            const response = await fetch("./data/auth_me.php");
+            if (response.ok) {
+                const payload = await response.json();
+                user = payload && payload.user ? payload.user : null;
+            }
+        } catch (_) { /* fall back to getUser.php */ }
+        if (!user) {
+            const response = await fetch("./data/getUser.php");
+            user = await response.json();
+        }
         const header = document.createElement("header");
         header.className = "dashboard-header";
 
@@ -17,7 +27,6 @@ async function loadHeader() {
                 </div>
             </div>
             <div class="user-info">
-                <img src="${user.avatar}" alt="User avatar" class="user-avatar">
                 <div class="user-details">
                     <p class="user-name">${user.name}</p>
                     <p class="user-email">${user.email}</p>
