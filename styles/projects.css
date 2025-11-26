@@ -366,21 +366,40 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .project-card {
     width: 100%;
     padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-auto-rows: auto;
+    align-items: start;
   }
 
   .status-area {
     position: static;
+    grid-column: 2;
+    grid-row: 1;
     justify-content: flex-end;
-    margin-bottom: 8px;
+    margin-bottom: 0;
+    align-self: center;
   }
 
   .project-card h2 {
-    margin-top: 6px;
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0 0 0.3rem 0;
+    align-self: center;
+  }
+
+  /* Keep all other sections spanning full width below the header row */
+  .project-card > p,
+  .project-card > .project-infoProjects,
+  .project-card > .progress-header,
+  .project-card > .progress-containerProjects,
+  .project-card > .card-buttons {
+    grid-column: 1 / -1;
   }
 
   .project-infoProjects {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 24px;
   }
 
   .card-buttons {
@@ -462,7 +481,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 @media (max-width: 1500px) {
   .dashboard-content {
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     gap: 32px;
   }
 
@@ -471,23 +490,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 16px;
   }
 
-  .status-area {
-    position: static;
-    justify-content: flex-end;
-    margin-bottom: 8px;
-  }
-
-  .project-card h2 {
-    margin-top: 6px;
-  }
 
   .project-infoProjects {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 24px;
   }
 
   .card-buttons {
-    flex-direction: column;
+    flex-direction: row;
     gap: 12px;
   }
 
