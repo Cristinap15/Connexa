@@ -345,3 +345,75 @@
   .btn-create:hover {
     opacity: 0.9;
   }
+
+/* Layout tweaks for narrower viewports */
+@media (max-width: 1500px) {
+  .dashboard-content {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 32px;
+  }
+
+  .client-card {
+    width: 100%;
+    padding: 16px;
+  }
+
+  
+
+  .status-area {
+    align-self: flex-start;
+  }
+
+ 
+
+  .card-buttons button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .search-bar {
+    padding: 0.75rem 0.9rem;
+  }
+
+  .client-content {
+    gap: 12px;
+  }
+}
+
+
+
+  /* Keep existing rules above */
+
+@media (max-width: 1500px) {
+  .dashboard-content {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 32px;
+  }
+
+  .client-card {
+    width: 100%;
+    padding: 16px;
+  }
+
+
+  .status-area {
+    align-self: flex-start;
+  }
+
+  
+
+  .card-buttons button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .search-bar {
+    padding: 0.75rem 0.9rem;
+  }
+
+  .client-content {
+    gap: 12px;
+  }
+}
