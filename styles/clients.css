@@ -8,6 +8,14 @@
     gap: 50px;
   }
 
+  .clients-grid{
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    width: 100%;
+  }
+
   .search-bar {
     grid-column: 1 / -1;
     display: flex;
@@ -74,6 +82,16 @@
     font-weight:700;
     font-family: var(--font-body);
   }
+  .status-btn.active{
+    background-color: #e7f7ee;
+    color: #1f8f52;
+    border: 1px solid #b2e3c6;
+  }
+  .status-btn.inactive{
+    background-color: #f7e7e7;
+    color: #b63a3a;
+    border: 1px solid #e9b2b2;
+  }
   .menu-btn{
     background: transparent;
     border: none;
@@ -105,10 +123,13 @@
     height: 15px;
   }
 
-  hr{
+  /* keep separators inside card width */
+  .client-card hr{
     border: none;
     border-top: 1.5px solid var(--clr-grey-600);
     margin: 0;
+    width: 100%;
+    box-sizing: border-box;
   }
   .client-project-stats{
     display: flex;
@@ -155,3 +176,152 @@
     background-color: var(--bg-button);
     border: none;
   }
+
+  .no-data{
+    grid-column: 1 / -1;
+    font-family: var(--font-body-main);
+    font-weight: var(--font-weight-medium);
+    font-size: 16px;
+    color: var(--txt-subtitle);
+  }
+
+  /* Popup (reuse projects dialog styling so the button works visibly) */
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    font-family: var(--font-body);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+  }
+
+  .popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: var(--bg-container);
+    border: 1px solid var(--border-container);
+    border-radius: 14px;
+    padding: 2rem;
+    width: 744px;
+    position: relative;
+    animation: popupFade 0.3s ease;
+  }
+
+  @keyframes popupFade {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  hr{
+    background-color: var(--clr-grey-600);
+    height: 2.5px;
+    width: calc(100% + 4rem);
+    margin-left: -2rem;
+    border: none;
+  }
+
+  .close-btn {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  .popup-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .form-group.full-width {
+    width: 100%;
+  }
+
+  .form-group label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--clr-black);
+    font-size: 15px;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    border: 1px solid var(--border-container);
+    border-radius: 8px;
+    padding: 10px 25px;
+    font-size: 1rem;
+    color: #000;
+    background: var(--bg-main);
+    font-family: var(--font-body);
+    box-sizing: border-box;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder,
+  .form-group select::placeholder {
+    font-family: var(--font-body);
+    color: var(--clr-grey-600);
+    font-size: 12px;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .form-group textarea {
+    resize: none;
+    min-height: 130px;
+    line-height: 1.4;
+    height: auto;
+  }
+
+  .form-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 10px;
+  }
+
+  .btn-cancel, .btn-create {
+    padding: 10px 30px;
+    width: 329px;
+    border-radius: 7px;
+    font-weight: var(--font-weight-bold);
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .btn-cancel {
+    background: var(--bg-main);
+    color: var(--clr-grey-600);
+    border: 1px solid var(--border-container);
+  }
+
+  .btn-cancel:hover { background: var(--clr-brand-main); }
+
+  .btn-create {
+    background: var(--clr-brand-main);
+    border: none;
+    color: white;
+  }
+
+  .btn-create:hover { opacity: 0.9; }
