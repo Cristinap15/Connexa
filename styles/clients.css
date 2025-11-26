@@ -168,19 +168,13 @@
     padding: 16px;
   }
 
-  .client-header {
-    flex-direction: column;
-    gap: 8px;
-  }
+  
 
   .status-area {
     align-self: flex-start;
   }
 
-  .card-buttons {
-    flex-direction: column;
-    gap: 12px;
-  }
+ 
 
   .card-buttons button {
     width: 100%;
